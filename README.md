@@ -1,6 +1,6 @@
 # flutter_sync_engine
 
-**Version:** 0.0.1-dev_non_functional.1  
+**Version:** 0.0.1-dev.1+nonfunctional
 **Status:** Development / Currently Non-functional 
 
 `flutter_sync_engine` is a **Flutter offline-first sync engine plugin** that provides:

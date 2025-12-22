@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.0.1-dev_non_functional.1] - 2025-12-22
+## [0.0.1-dev.1+nonfunctional] - 2025-12-22
 ### Added
 - Initial plugin scaffolding for `flutter_sync_engine`.
 - Core models:
