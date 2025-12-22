@@ -2,39 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.0.1-dev.1+nonfunctional] - 2025-12-22
+## [0.0.1-dev.2+nonfunctional] - 2025-12-22
 ### Added
-- Initial plugin scaffolding for `flutter_sync_engine`.
-- Core models:
-    - `SyncOperation`
-    - `SyncEntity`
-- Interfaces:
-    - `SyncStore`
-    - `SyncTransport`
-    - `ConflictResolver`
-- Default implementation:
-    - `InMemorySyncStore` for in-memory storage.
-    - `DummyTransport` for local push/pull simulation.
-    - `LastWriteWins` conflict resolver.
-- `SyncEngine` core class:
-    - Push and pull operations.
-    - Conflict resolution per collection.
-    - Clear applied operations.
-- Example app demonstrating:
-    - Adding notes offline.
-    - Sync button triggering sync cycle.
-    - Log panel showing operations.
-    - Visual feedback of synced/pending notes.
+- Refactored `HiveSyncStore` with proper `Hive.initFlutter()` initialization.
+- Added `SQLiteSyncStore` for persistent offline storage.
+- `_synced` flag added to entities for visual sync status.
+- Example app now visually distinguishes **synced** and **pending** notes:
+  - Green cloud: synced
+  - Orange cloud: pending
+- Logs panel in example app shows operation events.
+- Example app supports offline note creation with sync simulation.
+- Pre-release versioning now compatible with `pub` (`0.0.1-dev.2+nonfunctional`).
 
 ### Fixed
-- N/A (first development release).
+- `LastWriteWins` conflict resolver handles null `updatedAt` values.
+- `_entities` access is now via public getter (`getEntities`) to prevent private field errors.
+- Hive initialization updated to match latest `hive_flutter` API.
 
 ### Known Issues
-- Example app uses dummy in-memory transport (no real backend).
-- Conflict resolution uses empty local entity by default.
-- Offline sync logic is **non-functional with real backend**.
-- `_synced` flag logic is basic; may need refinement for production.
+- DummyTransport only; no real backend integration.
+- Offline sync logic is non-functional with real backend.
+- Conflict resolver uses default local/remote comparison for demo purposes.
 
 ### Notes
-- This version is **development-only**.
-- API may change in future releases.
+- Development-only version, API may change in future.

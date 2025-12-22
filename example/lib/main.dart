@@ -28,6 +28,8 @@ class NotesPage extends StatefulWidget {
 class _NotesPageState extends State<NotesPage> {
   late final SyncEngine engine;
   late final InMemorySyncStore store;
+  late final HiveSyncStore hstore;
+  late final SQLiteSyncStore sstore;
   late final DummyTransport transport;
 
   List<Map<String, dynamic>> notes = [];
@@ -42,6 +44,18 @@ class _NotesPageState extends State<NotesPage> {
     engine = SyncEngine(store: store, transport: transport);
 
     engine.registerCollection(name: 'notes', conflictResolver: LastWriteWins());
+
+    /// Hive example
+    // hstore = HiveSyncStore();
+    // await hstore.init();
+    // transport = DummyTransport();
+    // engine = SyncEngine(store: store, transport: transport);
+
+    /// SQLite example
+    // final sstore = SQLiteSyncStore();
+    // await sstore.init();
+    // transport = DummyTransport();
+    // engine = SyncEngine(store: store, transport: transport);
 
     _loadNotes();
   }
