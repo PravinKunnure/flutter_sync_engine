@@ -1,7 +1,6 @@
 import '../store/sync_store.dart';
 import '../transport/sync_transport.dart';
 import '../conflict/conflict_resolver.dart';
-import '../model/sync_operation.dart';
 
 class SyncEngine {
   final SyncStore store;
