@@ -17,6 +17,7 @@ dependencies:
   hive_flutter:
   sqflite:
   path_provider:
+  path:
 
 dev_dependencies:
   flutter_test:
