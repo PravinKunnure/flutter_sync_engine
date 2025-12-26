@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## [1.0.0] - 2025-12-26
+### Added
+- Initial release of `Flutter SyncEngine`.
+- Core `SyncEngine` class to handle local <-> remote sync.
+- `SyncStore` interface for local storage.
+- Example implementations:
+  - `FileSyncStore`
+  - `HiveSyncStore`
+  - `SQLiteSyncStore`
+- `SyncTransport` interface for backend communication.
+- Example transport implementations:
+  - `DummyTransport` (in-memory)
+  - `RestTransport` (dummy REST API integration)
+- Conflict resolution mechanism (`ConflictResolver` interface).
+- Built-in `LastWriteWins` conflict resolver.
+- `SyncOperation` model for tracking CRUD operations.
+- Example Flutter app demonstrating:
+  - Adding notes
+  - Syncing with local and remote storage
+  - Switching storage and transport
+
 ## [0.0.1-dev.2+nonfunctional] - 2025-12-22
 ### Added
 - Refactored `HiveSyncStore` with proper `Hive.initFlutter()` initialization.

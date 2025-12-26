@@ -6,22 +6,20 @@ abstract class ConflictResolver {
 }
 
 class LastWriteWins implements ConflictResolver {
+  const LastWriteWins();
+
   @override
   Map<String, dynamic> resolve({
     required Map<String, dynamic> local,
     required Map<String, dynamic> remote,
   }) {
-    // If local is empty, just return remote
     if (local.isEmpty) return remote;
 
-    final localUpdatedStr = local['updatedAt'] as String?;
-    final remoteUpdatedStr = remote['updatedAt'] as String?;
-
-    final localUpdated = localUpdatedStr != null
-        ? DateTime.parse(localUpdatedStr)
+    final localUpdated = local['updatedAt'] != null
+        ? DateTime.parse(local['updatedAt'])
         : DateTime.fromMillisecondsSinceEpoch(0);
-    final remoteUpdated = remoteUpdatedStr != null
-        ? DateTime.parse(remoteUpdatedStr)
+    final remoteUpdated = remote['updatedAt'] != null
+        ? DateTime.parse(remote['updatedAt'])
         : DateTime.fromMillisecondsSinceEpoch(0);
 
     return localUpdated.isAfter(remoteUpdated) ? local : remote;

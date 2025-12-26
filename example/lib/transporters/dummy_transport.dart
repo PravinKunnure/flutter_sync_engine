@@ -1,5 +1,4 @@
-import 'sync_transport.dart';
-import '../model/sync_operation.dart';
+import 'package:flutter_sync_engine/flutter_sync_engine.dart';
 
 class DummyTransport implements SyncTransport {
   final List<SyncOperation> _remote = [];

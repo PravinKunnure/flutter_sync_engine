@@ -1,7 +1,8 @@
 name: flutter_sync_engine
 description: "A Flutter offline-first sync engine plugin for local operation logging,
   push/pull transport, and conflict resolution."
-version: 0.0.1-dev.2+nonfunctional
+#version: 0.0.1-dev.2+nonfunctional
+version: 1.0.0
 homepage: 'https://github.com/PravinKunnure/flutter_sync_engine'
 repository: 'https://github.com/yourusername/flutter_sync_engine'
 
@@ -13,11 +14,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hive: ^2.2.3          # latest stable Hive version
-  hive_flutter: ^1.1.0  # matches available version
-  sqflite: ^2.4.2
-  path_provider: ^2.1.5
-  path: ^1.9.1
+#  hive: ^2.2.3          # latest stable Hive version
+#  hive_flutter: ^1.1.0  # matches available version
+#  sqflite: ^2.4.2
+#  path_provider: ^2.1.5
+#  path: ^1.9.1
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +29,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+
 
   # To add assets to your package, add an assets section, like this:
   # assets:

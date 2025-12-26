@@ -15,9 +15,3 @@ class SyncOperation {
     required this.data,
   });
 }
-
-abstract class SyncEntity {
-  String get id;
-  DateTime get updatedAt;
-  Map<String, dynamic> toJson();
-}
