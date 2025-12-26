@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.0.1] - 2025-12-26
+### Added
+- Readme.md Documentation added and minor changes in package.
+
+
 ## [1.0.0] - 2025-12-26
 ### Added
 - Initial release of `Flutter SyncEngine`.

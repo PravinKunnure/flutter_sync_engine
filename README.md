@@ -23,10 +23,8 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_sync_engine:
-    git:
-      url: https://github.com/yourusername/flutter_sync_engine.git
-      ref: v1.0.0
+  flutter_sync_engine: ^1.0.0
+
 ```
 
 ---
