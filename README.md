@@ -1,5 +1,8 @@
 # Flutter SyncEngine
 
+[![Pub Version](https://img.shields.io/pub/v/flutter_sync_engine)](https://pub.dev/packages/flutter_sync_engine) | [![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
+
+
 **Version:** 1.0.0
 
 `SyncEngine` is a lightweight Flutter/Dart package that helps developers **sync data between local storage and remote backends**.  

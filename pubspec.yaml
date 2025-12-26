@@ -2,9 +2,9 @@ name: flutter_sync_engine
 description: "A Flutter offline-first sync engine plugin for local operation logging,
   push/pull transport, and conflict resolution."
 #version: 0.0.1-dev.2+nonfunctional
-version: 1.0.1
+version: 1.0.2
 homepage: 'https://github.com/PravinKunnure/flutter_sync_engine'
-repository: 'https://github.com/yourusername/flutter_sync_engine'
+repository: 'https://github.com/PravinKunnure/flutter_sync_engine'
 
 
 environment:
