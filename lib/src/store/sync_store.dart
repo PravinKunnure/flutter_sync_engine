@@ -28,6 +28,10 @@ abstract class SyncStore {
   /// the corresponding stored entity data.
   Future<Map<String, dynamic>> getEntities(String collection);
 
+  /// Delete entity for a given collection id/unique field.
+  ///
+  Future<void> deleteEntity(String collection, String id);
+
   /// Records a synchronization operation for later processing.
   ///
   /// Logged operations are pushed to the remote backend during

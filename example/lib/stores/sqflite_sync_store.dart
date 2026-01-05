@@ -6,6 +6,7 @@ import 'dart:convert';
 class SQLiteSyncStore implements SyncStore {
   late Database db;
 
+  /// Initialize database and tables
   Future<void> init() async {
     final path = join(await getDatabasesPath(), 'sync_engine.db');
     db = await openDatabase(
@@ -13,22 +14,22 @@ class SQLiteSyncStore implements SyncStore {
       version: 1,
       onCreate: (db, version) async {
         await db.execute('''
-        CREATE TABLE IF NOT EXISTS entities(
-          collection TEXT,
-          entityId TEXT,
-          data TEXT,
-          PRIMARY KEY(collection, entityId)
-        )
-      ''');
+          CREATE TABLE IF NOT EXISTS entities(
+            collection TEXT,
+            entityId TEXT,
+            data TEXT,
+            PRIMARY KEY(collection, entityId)
+          )
+        ''');
         await db.execute('''
-        CREATE TABLE IF NOT EXISTS operations(
-          collection TEXT,
-          entityId TEXT,
-          type TEXT,
-          timestamp TEXT,
-          data TEXT
-        )
-      ''');
+          CREATE TABLE IF NOT EXISTS operations(
+            collection TEXT,
+            entityId TEXT,
+            type TEXT,
+            timestamp TEXT,
+            data TEXT
+          )
+        ''');
       },
     );
   }
@@ -43,6 +44,17 @@ class SQLiteSyncStore implements SyncStore {
   }
 
   @override
+  Future<dynamic> getEntity(String collection, String id) async {
+    final list = await db.query(
+      'entities',
+      where: 'collection = ? AND entityId = ?',
+      whereArgs: [collection, id],
+    );
+    if (list.isEmpty) return null;
+    return jsonDecode(list.first['data'] as String);
+  }
+
+  @override
   Future<Map<String, dynamic>> getEntities(String collection) async {
     final list = await db.query(
       'entities',
@@ -54,6 +66,15 @@ class SQLiteSyncStore implements SyncStore {
       result[row['entityId'] as String] = jsonDecode(row['data'] as String);
     }
     return result;
+  }
+
+  @override
+  Future<void> deleteEntity(String collection, String id) async {
+    await db.delete(
+      'entities',
+      where: 'collection = ? AND entityId = ?',
+      whereArgs: [collection, id],
+    );
   }
 
   @override
@@ -85,25 +106,12 @@ class SQLiteSyncStore implements SyncStore {
 
   @override
   Future<void> clearOperations(List<SyncOperation> operations) async {
-    final ids = operations
-        .map((op) => "'${op.collection}_${op.entityId}'")
-        .join(',');
-    if (ids.isNotEmpty) {
+    for (final op in operations) {
       await db.delete(
         'operations',
-        where: "collection || '_' || entityId IN ($ids)",
+        where: 'collection = ? AND entityId = ?',
+        whereArgs: [op.collection, op.entityId],
       );
     }
-  }
-
-  @override
-  Future<dynamic> getEntity(String collection, String id) async {
-    final list = await db.query(
-      'entities',
-      where: 'collection = ? AND entityId = ?',
-      whereArgs: [collection, id],
-    );
-    if (list.isEmpty) return null;
-    return jsonDecode(list.first['data'] as String);
   }
 }

@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2026-01-05
+### Added
+- `deleteEntity` implementation added to all example `SyncStore` classes (`FileSyncStore`, `HiveSyncStore`, `SQLiteSyncStore`).
+- Example `MockSyncStore` included for easier testing and unit tests without real storage.
+- Added `SyncEngine.registerCollection` usage examples in documentation.
+- Optional `SyncStore` and `SyncTransport` implementations can now be fully customized by the developer (enhanced DX).
+
+### Improved
+- Improved developer experience (DX) by clarifying how to use custom stores and transports in README and example app.
+- Minor refactoring in example app for clearer store switching logic.
+- Better null safety and type checking across the package.
+- Minor bug fixes in entity retrieval and operation logging.
+
+### Fixed
+- Compilation errors due to missing `SyncStore.deleteEntity` implementations in example stores.
+- Type errors in example app (`SyncStore`, `SyncTransport`, `ConflictResolver`) when importing package incorrectly.
+
+
 ## [1.0.2] - 2025-12-26
 ### Added
 - Comprehensive DartDoc documentation across all public API elements.

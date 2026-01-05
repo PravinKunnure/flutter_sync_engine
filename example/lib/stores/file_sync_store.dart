@@ -74,4 +74,13 @@ class FileSyncStore implements SyncStore {
   Future<void> clearOperations(List<SyncOperation> operations) async {
     _operations.removeWhere((op) => operations.contains(op));
   }
+
+  /// ✅ Implemented deleteEntity
+  @override
+  Future<void> deleteEntity(String collection, String id) async {
+    if (_entities.containsKey(collection)) {
+      _entities[collection]!.remove(id);
+      await _saveToFile();
+    }
+  }
 }

@@ -6,6 +6,7 @@ class HiveSyncStore implements SyncStore {
 
   HiveSyncStore();
 
+  /// Initialize Hive and open box
   Future<void> init() async {
     await Hive.initFlutter();
     box = await Hive.openBox('sync_store');
@@ -14,7 +15,7 @@ class HiveSyncStore implements SyncStore {
   @override
   Future<void> saveEntity(String collection, dynamic entity) async {
     final col = box.get(collection, defaultValue: <String, dynamic>{}) as Map;
-    col[entity['id']] = entity;
+    col[entity['id']] = Map<String, dynamic>.from(entity);
     await box.put(collection, col);
   }
 
@@ -22,6 +23,21 @@ class HiveSyncStore implements SyncStore {
   Future<Map<String, dynamic>> getEntities(String collection) async {
     final col = box.get(collection, defaultValue: <String, dynamic>{}) as Map;
     return Map<String, dynamic>.from(col);
+  }
+
+  @override
+  Future<dynamic> getEntity(String collection, String id) async {
+    final col = await getEntities(collection);
+    return col[id];
+  }
+
+  @override
+  Future<void> deleteEntity(String collection, String id) async {
+    final col = await getEntities(collection);
+    if (col.containsKey(id)) {
+      col.remove(id);
+      await box.put(collection, col);
+    }
   }
 
   @override
@@ -69,11 +85,5 @@ class HiveSyncStore implements SyncStore {
         )
         .toList();
     await box.put('operations', listToStore);
-  }
-
-  @override
-  Future<dynamic> getEntity(String collection, String id) async {
-    final col = await getEntities(collection);
-    return col[id];
   }
 }
