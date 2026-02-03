@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [1.0.3] - 2026-01-05
+- Minor changes and doc changes
+
+## [1.0.3] - 2026-01-05
 ### Added
 - `deleteEntity` implementation added to all example `SyncStore` classes (`FileSyncStore`, `HiveSyncStore`, `SQLiteSyncStore`).
 - Example `MockSyncStore` included for easier testing and unit tests without real storage.
